@@ -1,0 +1,3 @@
+Hello, world!
+[31mHello, world!
+[0m
