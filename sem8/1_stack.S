@@ -42,8 +42,6 @@ cycle:
     mov     rdi, rax
     call    writei64
     jmp cycle
-
-
     // [ return   xxxxx ]
     //   ^rsp
     // call    readi64

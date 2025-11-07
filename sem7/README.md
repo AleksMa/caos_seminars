@@ -85,8 +85,19 @@ rax rcx rdx rbx rsi rdi rsp rbp r8 r9 r10 r11 r12 r13 r14 r15
         dec     DST        /* --DST */
         neg     DST        /* DST = -DST */
         mov     DST, SRC   /* DST = SRC */
-        imul    SRC        /* (eax,edx) = eax * SRC - знаковое */
-        mul     SRC        /* (eax,edx) = eax * SRC - беззнаковое */
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// i – "integer signed"
+
+        imul    SRC        /* (rax,rdx) = rax * SRC - знаковое */
+        imul    DST, SRC   /* DST = DST * SRC */
+        imul    DST, SRC1, SRC2   /* DST = SRC1 * SRC2 */
+        mul     SRC        /* (rax,rdx) = rax * SRC - беззнаковое */
+
+        div     SRC        /* rax = (rdx,rax) / SRC + rdx */
+        idiv    SRC        /* rax = (rdx,rax) / SRC + rdx (знаковое, округление к нулю)*/
+
+        cqo                /* знаковое расширение RAX до RDX */
+
         and     DST, SRC   /* DST &= SRC */
         or      DST, SRC   /* DST |= SRC */
         xor     DST, SRC   /* DST ^= SRC */
